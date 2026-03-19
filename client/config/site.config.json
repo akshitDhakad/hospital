@@ -1,0 +1,13 @@
+{
+  "siteName": "Hospital",
+  "baseUrl": "https://www.example-hospital.com",
+  "defaultLocale": "en-IN",
+  "contact": {
+    "phone": "+91-00000-00000",
+    "email": "info@example-hospital.com"
+  },
+  "seo": {
+    "defaultTitle": "Hospital | Trusted Care, 24/7",
+    "defaultDescription": "Comprehensive hospital care with emergency services, ICU support, diagnostics, and specialist consultations."
+  }
+}
