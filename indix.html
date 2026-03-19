@@ -1,1256 +1,2351 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Jyoti Hospital — ICU & Pharmacy, Ahmedabad</title>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jyoti Hospital — ICU & Pharmacy, Ahmedabad</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ── TOKENS ───────────────────────────────────────── */
+    :root {
+      --ink: #0c1117;
+      --ink2: #1e2733;
+      --white: #ffffff;
+      --snow: #f5f6f8;
+      --mist: #edf0f4;
+      --border: #e2e6ec;
+      --sub: #5a6478;
+      --muted: #8c95a6;
+      --blue: #1a5ce8;
+      --blue2: #1248c4;
+      --sky: #e8f0fd;
+      --teal: #07b8bc;
+      --green: #12b76a;
+      --red: #f04438;
+      --gold: #f79009;
+      --r-pill: 999px;
+      --r-lg: 24px;
+      --r-md: 16px;
+      --r-sm: 10px;
+      --shadow: 0 8px 32px rgba(12, 17, 23, .08);
+      --shadow-lg: 0 20px 64px rgba(12, 17, 23, .13);
+    }
 
-/* ── TOKENS ───────────────────────────────────────── */
-:root {
-  --ink:      #0c1117;
-  --ink2:     #1e2733;
-  --white:    #ffffff;
-  --snow:     #f5f6f8;
-  --mist:     #edf0f4;
-  --border:   #e2e6ec;
-  --sub:      #5a6478;
-  --muted:    #8c95a6;
-  --blue:     #1a5ce8;
-  --blue2:    #1248c4;
-  --sky:      #e8f0fd;
-  --teal:     #07b8bc;
-  --green:    #12b76a;
-  --red:      #f04438;
-  --gold:     #f79009;
-  --r-pill:   999px;
-  --r-lg:     24px;
-  --r-md:     16px;
-  --r-sm:     10px;
-  --shadow:   0 8px 32px rgba(12,17,23,.08);
-  --shadow-lg:0 20px 64px rgba(12,17,23,.13);
-}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Manrope',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
+    html {
+      scroll-behavior: smooth
+    }
 
-/* ── NAV ──────────────────────────────────────────── */
-.nav-wrap{
-  position:absolute;top:0;left:0;right:0;z-index:100;
-  padding:20px 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:16px;
-}
-.nav-pill-left{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.18);
-  backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,0.28);
-  border-radius:var(--r-pill);
-  padding:6px 8px;
-}
-.nav-pill-left a{
-  font-size:0.8rem;font-weight:600;color:rgba(255,255,255,0.88);
-  padding:7px 16px;border-radius:var(--r-pill);
-  transition:background 0.2s,color 0.2s;
-}
-.nav-pill-left a:hover{background:rgba(255,255,255,0.18);color:#fff}
-.nav-logo{
-  position:absolute;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:10px;
-}
-.nav-logo-icon{
-  width:38px;height:38px;background:#fff;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
-  box-shadow:0 4px 12px rgba(0,0,0,0.15);
-}
-.nav-logo-name{
-  font-family:'Instrument Serif',serif;
-  font-size:1.2rem;color:#fff;font-style:italic;
-}
-.nav-right{
-  display:flex;align-items:center;gap:10px;
-}
-.nav-search{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.18);
-  backdrop-filter:blur(16px);
-  border:1px solid rgba(255,255,255,0.28);
-  border-radius:var(--r-pill);
-  padding:8px 16px;
-  color:rgba(255,255,255,0.7);font-size:0.8rem;
-  cursor:pointer;min-width:120px;
-}
-.nav-search span{font-size:0.85rem}
-.nav-book{
-  display:flex;align-items:center;gap:8px;
-  background:#fff;color:var(--ink);
-  font-size:0.82rem;font-weight:700;
-  padding:9px 18px;border-radius:var(--r-pill);
-  box-shadow:0 4px 16px rgba(0,0,0,0.15);
-  transition:transform 0.2s,box-shadow 0.2s;
-}
-.nav-book:hover{transform:scale(1.03);box-shadow:0 6px 24px rgba(0,0,0,0.2)}
-.nav-menu-btn{
-  width:38px;height:38px;
-  background:rgba(255,255,255,0.18);
-  border:1px solid rgba(255,255,255,0.28);
-  border-radius:50%;backdrop-filter:blur(16px);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:#fff;font-size:1rem;
-}
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      overflow-x: hidden
+    }
 
-/* ── HERO ──────────────────────────────────────────── */
-.hero{
-  height:100vh;min-height:680px;
-  position:relative;overflow:hidden;
-  background:#1a2840;
-}
-.hero-img{
-  position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1600&q=85') center/cover no-repeat;
-  transition:transform 8s ease;
-}
-.hero:hover .hero-img{transform:scale(1.03)}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(10,20,40,0.55) 0%,rgba(10,20,40,0.25) 40%,rgba(10,20,40,0.7) 100%);
-}
-.hero-content{
-  position:relative;z-index:2;
-  height:100%;
-  display:flex;flex-direction:column;
-  padding:0 40px 60px;
-}
-/* Top left info block */
-.hero-topleft{
-  position:absolute;left:40px;top:50%;transform:translateY(-20%);
-  max-width:210px;
-}
-.hero-topleft-label{
-  font-size:0.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
-  color:rgba(255,255,255,0.55);margin-bottom:10px;
-}
-.hero-topleft p{
-  font-size:0.82rem;color:rgba(255,255,255,0.72);line-height:1.65;
-}
-.hero-avatars{display:flex;align-items:center;gap:6px;margin-top:16px}
-.av-stack{display:flex}
-.av-stack .av{
-  width:32px;height:32px;border-radius:50%;border:2px solid rgba(255,255,255,0.5);
-  background:linear-gradient(135deg,#3b82f6,#06b6d4);
-  margin-left:-8px;display:flex;align-items:center;justify-content:center;
-  font-size:0.65rem;font-weight:700;color:#fff;
-}
-.av-stack .av:first-child{margin-left:0}
-.av-label{font-size:0.73rem;color:rgba(255,255,255,0.65);font-weight:600}
-/* Main headline */
-.hero-headline{
-  position:absolute;left:50%;bottom:160px;
-  transform:translateX(-50%);
-  text-align:center;width:100%;max-width:720px;
-  padding:0 24px;
-}
-.hero-headline h1{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(2.6rem,5.5vw,4.8rem);
-  color:#fff;line-height:1.12;
-  letter-spacing:-0.5px;margin-bottom:14px;
-}
-.hero-headline h1 em{font-style:italic;color:rgba(255,255,255,0.7)}
-.hero-headline p{
-  font-size:0.9rem;color:rgba(255,255,255,0.65);
-  line-height:1.7;max-width:460px;margin:0 auto 28px;
-}
-.hero-cta-row{
-  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
-}
-.btn-hero{
-  display:inline-flex;align-items:center;gap:9px;
-  background:#fff;color:var(--ink);
-  font-size:0.88rem;font-weight:700;
-  padding:14px 28px;border-radius:var(--r-pill);
-  box-shadow:0 8px 28px rgba(0,0,0,0.22);
-  transition:transform 0.2s,box-shadow 0.2s;
-}
-.btn-hero:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,0.28)}
-.btn-hero-icon{
-  width:32px;height:32px;background:var(--ink);color:#fff;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;
-}
-/* Social pills right */
-.hero-socials{
-  position:absolute;right:32px;bottom:220px;
-  display:flex;flex-direction:column;gap:8px;
-}
-.social-pill{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.14);
-  border:1px solid rgba(255,255,255,0.22);
-  backdrop-filter:blur(12px);
-  border-radius:var(--r-pill);
-  padding:7px 14px;
-  color:#fff;font-size:0.78rem;font-weight:600;
-  transition:background 0.2s;cursor:pointer;
-}
-.social-pill:hover{background:rgba(255,255,255,0.22)}
-/* Bottom bar */
-.hero-bottom{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:20px 40px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:16px;flex-wrap:wrap;
-}
-.hero-stat-pill{
-  display:flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,0.12);
-  border:1px solid rgba(255,255,255,0.2);
-  backdrop-filter:blur(12px);
-  border-radius:var(--r-pill);padding:10px 20px;
-  color:#fff;
-}
-.hsp-num{font-family:'Instrument Serif',serif;font-size:1.3rem;font-style:italic;font-weight:400}
-.hsp-line{width:1px;height:22px;background:rgba(255,255,255,0.25)}
-.hsp-lbl{font-size:0.73rem;opacity:0.65;font-weight:500}
-.hero-app-btns{
-  display:flex;align-items:center;gap:8px;
-}
-.app-btn{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.22);
-  backdrop-filter:blur(12px);border-radius:var(--r-pill);
-  padding:9px 16px;color:#fff;font-size:0.78rem;font-weight:600;
-  transition:background 0.2s;cursor:pointer;
-}
-.app-btn:hover{background:rgba(255,255,255,0.22)}
+    a {
+      text-decoration: none;
+      color: inherit
+    }
 
-/* ── ABOUT SECTION ────────────────────────────────── */
-.about-sec{
-  padding:96px 40px;
-  display:grid;grid-template-columns:1fr 1fr 1fr;
-  gap:0;max-width:1280px;margin:0 auto;
-  align-items:start;
-}
-.about-tag-col{
-  padding-right:40px;padding-top:8px;
-}
-.about-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  border:1px solid var(--border);border-radius:var(--r-pill);
-  padding:6px 14px;font-size:0.75rem;font-weight:600;color:var(--sub);
-  margin-bottom:24px;
-}
-.about-main-col{grid-column:span 2}
-.about-main-col h2{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(1.8rem,3vw,3rem);
-  color:var(--ink);line-height:1.2;margin-bottom:20px;
-}
-.about-main-col h2 em{font-style:italic;color:var(--blue)}
-.about-main-col p{
-  font-size:0.93rem;color:var(--sub);line-height:1.8;max-width:540px;margin-bottom:28px;
-}
-.about-feature-row{display:flex;gap:12px;flex-wrap:wrap}
-.feat-pill{
-  display:flex;align-items:center;gap:8px;
-  background:var(--snow);border:1px solid var(--border);
-  border-radius:var(--r-pill);padding:9px 16px;
-  font-size:0.8rem;font-weight:600;color:var(--ink);
-  transition:border-color 0.2s,background 0.2s;
-}
-.feat-pill:hover{border-color:var(--blue);background:var(--sky)}
-.fp-dot{width:8px;height:8px;border-radius:50%}
-.fp-blue{background:var(--blue)}
-.fp-green{background:var(--green)}
-.fp-teal{background:var(--teal)}
-.fp-gold{background:var(--gold)}
-.learn-btn{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--ink);color:#fff;
-  font-size:0.85rem;font-weight:700;
-  padding:12px 22px;border-radius:var(--r-pill);
-  margin-top:28px;transition:background 0.2s,transform 0.2s;
-}
-.learn-btn:hover{background:var(--blue);transform:translateX(2px)}
-.btn-arrow{
-  width:28px;height:28px;background:rgba(255,255,255,0.18);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;
-}
+    ::-webkit-scrollbar {
+      width: 4px
+    }
 
-/* ── FACILITIES BENTO ─────────────────────────────── */
-.facilities-sec{
-  background:var(--white);
-  padding:0 40px 96px;
-}
-.fac-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-bottom:28px;border-bottom:1px solid var(--border);
-  margin-bottom:28px;max-width:1280px;margin-left:auto;margin-right:auto;
-}
-.fac-title{
-  font-size:1.1rem;font-weight:700;color:var(--ink);
-}
-.fac-search{
-  display:flex;align-items:center;gap:8px;
-  background:var(--snow);border:1px solid var(--border);
-  border-radius:var(--r-pill);padding:8px 16px;
-  font-size:0.8rem;color:var(--muted);min-width:180px;
-}
-.view-all-btn{
-  display:flex;align-items:center;gap:7px;
-  background:var(--ink);color:#fff;
-  font-size:0.8rem;font-weight:700;
-  padding:9px 18px;border-radius:var(--r-pill);
-  transition:background 0.2s;
-}
-.view-all-btn:hover{background:var(--blue)}
-.bento{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-template-rows:280px 280px;
-  gap:14px;max-width:1280px;margin:0 auto;
-}
-.bento-card{
-  border-radius:var(--r-lg);
-  overflow:hidden;
-  position:relative;
-  cursor:pointer;
-  transition:transform 0.3s,box-shadow 0.3s;
-  background:#dbe8fb;
-}
-.bento-card:hover{transform:scale(1.01);box-shadow:var(--shadow-lg)}
-.bc-img{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  transition:transform 0.5s ease;
-}
-.bento-card:hover .bc-img{transform:scale(1.06)}
-.bc-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(10,20,40,0.08) 0%,rgba(10,20,40,0.65) 100%);
-}
-.bc-content{
-  position:absolute;inset:0;padding:20px 22px;
-  display:flex;flex-direction:column;justify-content:space-between;
-}
-.bc-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.22);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:var(--r-pill);padding:5px 12px;
-  font-size:0.72rem;font-weight:600;color:#fff;
-  width:fit-content;
-}
-.bc-bottom{
-  display:flex;justify-content:space-between;align-items:flex-end;
-}
-.bc-title{
-  font-size:0.97rem;font-weight:700;color:#fff;line-height:1.3;max-width:200px;
-}
-.bc-arrow{
-  width:36px;height:36px;
-  background:#fff;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.9rem;color:var(--ink);flex-shrink:0;
-  transition:background 0.2s,transform 0.2s;
-}
-.bento-card:hover .bc-arrow{background:var(--blue);color:#fff;transform:rotate(45deg)}
-/* big card */
-.bento-card.big{grid-row:span 2}
-.bc-num{
-  position:absolute;top:16px;right:16px;
-  width:36px;height:36px;
-  background:rgba(255,255,255,0.22);backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,0.3);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:0.78rem;font-weight:700;color:#fff;
-}
-/* bg images via unsplash */
-.bg-emergency{background-image:url('https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80')}
-.bg-icu{background-image:url('https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=800&q=80')}
-.bg-pharmacy{background-image:url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80')}
-.bg-opd{background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80')}
-.bg-diagnostics{background-image:url('https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80')}
+    ::-webkit-scrollbar-thumb {
+      background: var(--blue);
+      border-radius: 2px
+    }
 
-/* ── NEARBY / EXPLORE ─────────────────────────────── */
-.explore-sec{
-  background:var(--snow);
-  padding:96px 40px;
-}
-.explore-inner{max-width:1280px;margin:0 auto}
-.explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.explore-left{}
-.explore-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--blue);margin-bottom:18px;
-}
-.explore-left h2{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(2rem,3.5vw,3.2rem);
-  color:var(--ink);line-height:1.15;margin-bottom:16px;
-}
-.explore-left h2 em{font-style:italic}
-.explore-left p{font-size:0.9rem;color:var(--sub);line-height:1.8;max-width:440px;margin-bottom:28px}
-.get-started{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--ink);color:#fff;
-  font-size:0.85rem;font-weight:700;
-  padding:12px 22px;border-radius:var(--r-pill);
-  transition:background 0.2s;
-}
-.get-started:hover{background:var(--blue)}
-.trust-row{
-  display:flex;align-items:center;gap:8px;margin-top:20px;
-}
-.trust-dot{width:7px;height:7px;background:var(--blue);border-radius:50%}
-.trust-txt{font-size:0.78rem;color:var(--muted);font-weight:500}
-/* Right side — image mosaic */
-.explore-right{position:relative}
-.mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;gap:12px}
-.mosaic-card{
-  border-radius:var(--r-md);overflow:hidden;position:relative;
-  background:#dbe8fb;
-}
-.mosaic-card:first-child{grid-row:span 2}
-.mc-img{position:absolute;inset:0;background-size:cover;background-position:center}
-.mc-overlay{position:absolute;inset:0;background:rgba(10,20,40,0.25)}
-.mc-label{
-  position:absolute;bottom:12px;left:12px;right:12px;
-  display:flex;justify-content:space-between;align-items:flex-end;
-}
-.mc-title{font-size:0.82rem;font-weight:700;color:#fff}
-.mc-loc{font-size:0.7rem;color:rgba(255,255,255,0.7);margin-top:3px;display:flex;align-items:center;gap:4px}
-.mc-btn{
-  width:30px;height:30px;background:#fff;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;
-  transition:background 0.2s,transform 0.2s;
-}
-.mosaic-card:hover .mc-btn{background:var(--blue);color:#fff;transform:rotate(45deg)}
-/* Community card overlay */
-.community-card{
-  background:var(--ink);
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  border-radius:var(--r-lg);padding:20px 22px;
-  min-width:200px;box-shadow:var(--shadow-lg);z-index:10;
-  text-align:center;
-}
-.cc-title{font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:8px}
-.cc-email{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:var(--r-pill);padding:8px 14px;
-  font-size:0.74rem;color:rgba(255,255,255,0.7);
-  justify-content:space-between;margin-top:6px;
-}
+    /* ── NAV ──────────────────────────────────────────── */
+    .nav-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-/* ── DOCTOR ──────────────────────────────────────── */
-.doctor-sec{
-  padding:96px 40px;
-  max-width:1280px;margin:0 auto;
-}
-.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.doc-left{}
-.doc-img-frame{
-  width:100%;height:480px;
-  border-radius:var(--r-lg);
-  background:linear-gradient(145deg,#dbe8fb,#c7ddfa);
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:var(--shadow-lg);
-}
-.doc-img-bg{
-  position:absolute;inset:0;
-  background:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80') center/cover no-repeat;
-  opacity:0.4;
-}
-.doc-initials{
-  font-family:'Instrument Serif',serif;
-  font-size:7rem;font-style:italic;color:var(--blue);
-  position:relative;z-index:1;opacity:0.6;
-  user-select:none;
-}
-.doc-badge{
-  position:absolute;bottom:24px;left:24px;
-  background:#fff;border-radius:var(--r-md);
-  padding:14px 18px;box-shadow:var(--shadow);
-  display:flex;align-items:center;gap:12px;
-}
-.db-icon{
-  width:40px;height:40px;background:var(--sky);
-  border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;
-}
-.db-name{font-size:0.88rem;font-weight:700;color:var(--ink)}
-.db-role{font-size:0.72rem;color:var(--muted);margin-top:2px}
-.doc-verified-badge{
-  position:absolute;top:20px;right:20px;
-  background:var(--green);color:#fff;
-  border-radius:var(--r-pill);padding:6px 14px;
-  font-size:0.72rem;font-weight:700;
-  display:flex;align-items:center;gap:5px;
-}
-.doc-right{}
-.doc-stats{
-  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;
-}
-.dstat{
-  background:var(--snow);border:1px solid var(--border);
-  border-radius:var(--r-md);padding:18px;
-  transition:border-color 0.2s;
-}
-.dstat:hover{border-color:var(--blue)}
-.dstat-num{
-  font-family:'Instrument Serif',serif;
-  font-size:2rem;color:var(--ink);font-weight:400;margin-bottom:4px;
-}
-.dstat-num span{color:var(--blue)}
-.dstat-lbl{font-size:0.75rem;color:var(--muted);font-weight:500}
-.specialty-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.stag{
-  background:var(--sky);color:var(--blue);
-  font-size:0.74rem;font-weight:600;
-  padding:5px 12px;border-radius:var(--r-pill);
-  border:1px solid rgba(26,92,232,0.15);
-}
+    .nav-pill-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--r-pill);
+      padding: 6px 8px;
+    }
 
-/* ── REVIEWS ─────────────────────────────────────── */
-.reviews-sec{
-  background:var(--snow);
-  padding:96px 40px;
-}
-.reviews-inner{max-width:1280px;margin:0 auto}
-.reviews-header{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  margin-bottom:40px;flex-wrap:wrap;gap:20px;
-}
-.testimonial-tag{
-  display:inline-flex;align-items:center;gap:7px;
-  border:1px solid var(--border);border-radius:var(--r-pill);
-  padding:6px 14px;font-size:0.75rem;font-weight:600;color:var(--sub);
-  margin-bottom:14px;
-}
-.rev-score-row{display:flex;align-items:center;gap:12px}
-.rev-score-num{
-  font-family:'Instrument Serif',serif;
-  font-size:3.5rem;color:var(--ink);line-height:1;
-}
-.rev-score-stars{color:var(--gold);font-size:0.9rem}
-.rev-score-note{font-size:0.78rem;color:var(--muted);margin-top:3px}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.rev-card{
-  background:#fff;border:1.5px solid var(--border);
-  border-radius:var(--r-lg);padding:24px;
-  display:flex;flex-direction:column;
-  transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;
-}
-.rev-card:hover{border-color:rgba(26,92,232,0.25);transform:translateY(-4px);box-shadow:var(--shadow)}
-.rev-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
-.rev-av{
-  width:42px;height:42px;border-radius:50%;flex-shrink:0;
-  background:linear-gradient(135deg,var(--blue),var(--teal));
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.88rem;font-weight:700;color:#fff;
-}
-.rev-name{font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:2px}
-.rev-date{font-size:0.72rem;color:var(--muted)}
-.rev-stars2{color:var(--gold);font-size:0.82rem}
-.rev-text{font-size:0.84rem;color:var(--sub);line-height:1.78;flex:1}
-.rev-platform{
-  display:inline-flex;align-items:center;gap:5px;
-  margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
-  font-size:0.72rem;color:var(--muted);font-weight:600;
-}
+    .nav-pill-left a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.88);
+      padding: 7px 16px;
+      border-radius: var(--r-pill);
+      transition: background 0.2s, color 0.2s;
+    }
 
-/* ── CONTACT / LOCATION ──────────────────────────── */
-.contact-sec{
-  padding:96px 40px;
-  max-width:1280px;margin:0 auto;
-}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.map-box{
-  border-radius:var(--r-lg);overflow:hidden;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow-lg);height:400px;
-}
-.map-box iframe{width:100%;height:100%;border:none;display:block}
-.contact-info{display:flex;flex-direction:column;gap:14px}
-.ci-card{
-  background:var(--snow);border:1.5px solid var(--border);
-  border-radius:var(--r-md);padding:18px 20px;
-  display:flex;align-items:flex-start;gap:14px;
-  transition:border-color 0.2s;
-}
-.ci-card:hover{border-color:var(--blue)}
-.ci-icon{
-  width:40px;height:40px;flex-shrink:0;
-  background:#fff;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-  box-shadow:var(--shadow);
-}
-.ci-lbl{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:4px}
-.ci-val{font-size:0.9rem;font-weight:600;color:var(--ink);line-height:1.55}
-.ci-val a{color:var(--blue)}
-.dir-cta{
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  background:var(--ink);color:#fff;
-  font-size:0.88rem;font-weight:700;
-  padding:15px;border-radius:var(--r-md);
-  transition:background 0.2s,transform 0.2s;
-  box-shadow:0 4px 16px rgba(12,17,23,0.2);
-}
-.dir-cta:hover{background:var(--blue);transform:translateY(-2px)}
+    .nav-pill-left a:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff
+    }
 
-/* ── LOGO MARQUEE ────────────────────────────────── */
-.marquee-sec{
-  overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  padding:18px 0;background:var(--white);
-}
-.marquee-track{
-  display:flex;gap:56px;align-items:center;
-  animation:marquee 22s linear infinite;
-  white-space:nowrap;width:max-content;
-}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{
-  font-size:0.82rem;font-weight:700;color:var(--muted);letter-spacing:1px;
-  text-transform:uppercase;display:flex;align-items:center;gap:10px;
-}
-.marquee-dot{width:5px;height:5px;background:var(--border);border-radius:50%}
+    .nav-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* ── TIMINGS STRIP ───────────────────────────────── */
-.timings-sec{
-  background:var(--ink);
-  padding:64px 40px;
-}
-.timings-inner{
-  max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 3fr;gap:48px;align-items:center;
-}
-.timings-label{
-  font-family:'Instrument Serif',serif;
-  font-size:2rem;font-style:italic;color:#fff;line-height:1.3;
-}
-.timings-label small{display:block;font-family:'Manrope',sans-serif;font-style:normal;font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.timings-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-}
-.tcard{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:var(--r-md);padding:20px;
-  transition:border-color 0.2s,background 0.2s;
-}
-.tcard:hover{border-color:rgba(26,92,232,0.4);background:rgba(26,92,232,0.06)}
-.tcard-icon{font-size:1.3rem;margin-bottom:10px}
-.tcard-title{font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:4px}
-.tcard-time{font-size:0.8rem;color:rgba(255,255,255,0.5)}
-.tcard-badge{
-  display:inline-flex;margin-top:10px;
-  font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:var(--r-pill);
-}
-.tb-green{background:rgba(18,183,106,0.15);color:#34d399;border:1px solid rgba(18,183,106,0.2)}
-.tb-blue{background:rgba(26,92,232,0.15);color:#93c5fd;border:1px solid rgba(26,92,232,0.2)}
+    .nav-logo-icon {
+      width: 38px;
+      height: 38px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 
-/* ── FOOTER ──────────────────────────────────────── */
-footer{
-  background:var(--white);
-  border-top:1px solid var(--border);
-}
-.footer-top{
-  padding:60px 40px 40px;
-  max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
-}
-.fb-name{
-  font-family:'Instrument Serif',serif;
-  font-size:1.4rem;font-style:italic;color:var(--ink);margin-bottom:10px;
-}
-.fb-desc{font-size:0.82rem;color:var(--sub);line-height:1.75;max-width:260px;margin-bottom:18px}
-.fb-socials{display:flex;gap:8px}
-.fb-soc{
-  width:34px;height:34px;
-  background:var(--snow);border:1px solid var(--border);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:0.82rem;
-  transition:border-color 0.2s,background 0.2s;
-}
-.fb-soc:hover{border-color:var(--blue);background:var(--sky)}
-.fc-head{font-size:0.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;font-weight:700}
-.fc a{display:block;font-size:0.84rem;color:var(--sub);margin-bottom:10px;transition:color 0.2s}
-.fc a:hover{color:var(--blue)}
-/* GIANT WORDMARK */
-.footer-wordmark{
-  border-top:1px solid var(--border);
-  padding:32px 40px;overflow:hidden;
-  display:flex;justify-content:space-between;align-items:center;
-  position:relative;
-}
-.wordmark{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(3rem,8vw,7rem);
-  font-style:italic;color:var(--border);
-  line-height:1;user-select:none;
-  transition:color 0.3s;
-  letter-spacing:-2px;
-}
-.wordmark:hover{color:var(--blue)}
-.footer-copy{
-  font-size:0.75rem;color:var(--muted);
-  text-align:right;flex-shrink:0;
-}
+    .nav-logo-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      font-style: italic;
+    }
 
-/* ── SCROLL REVEAL ───────────────────────────────── */
-.sr{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease}
-.sr.show{opacity:1;transform:translateY(0)}
-.sd1{transition-delay:.08s}.sd2{transition-delay:.16s}.sd3{transition-delay:.24s}
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* ── RESPONSIVE ──────────────────────────────────── */
-@media(max-width:1024px){
-  .bento{grid-template-columns:1fr 1fr;grid-template-rows:260px 260px 260px}
-  .bento-card.big{grid-row:span 1}
-  .footer-top{grid-template-columns:1fr 1fr}
-  .explore-grid,.doc-grid,.contact-grid{grid-template-columns:1fr}
-  .timings-inner{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  .nav-pill-left{display:none}
-  .about-sec{grid-template-columns:1fr;padding:64px 24px}
-  .about-main-col{grid-column:span 1}
-  .facilities-sec,.reviews-sec,.contact-sec{padding-left:24px;padding-right:24px}
-  .explore-sec,.doctor-sec,.timings-sec{padding-left:24px;padding-right:24px}
-  .bento{grid-template-columns:1fr;grid-template-rows:auto}
-  .bento-card{height:240px}
-  .reviews-grid{grid-template-columns:1fr}
-  .hero-topleft{display:none}
-  .hero-socials{display:none}
-  .timings-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr;padding:40px 24px}
-  .footer-wordmark{padding:24px}
-  .mosaic{grid-template-columns:1fr}
-  .community-card{position:static;transform:none;margin-top:12px}
-  .doc-stats{grid-template-columns:1fr 1fr}
-  footer{overflow:hidden}
-}
-@media(max-width:480px){
-  .hero-headline h1{font-size:2rem}
-  .hero-bottom{flex-direction:column;align-items:flex-start}
-  .nav-logo-name{display:none}
-}
-</style>
+    .nav-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--r-pill);
+      padding: 8px 16px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .nav-search span {
+      font-size: 0.85rem
+    }
+
+    .nav-book {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: var(--r-pill);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-book:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2)
+    }
+
+    .nav-menu-btn {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      height: 100vh;
+      min-height: 680px;
+      position: relative;
+      overflow: hidden;
+      background: #1a2840;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1600&q=85') center/cover no-repeat;
+      transition: transform 8s ease;
+    }
+
+    .hero:hover .hero-img {
+      transform: scale(1.03)
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 20, 40, 0.55) 0%, rgba(10, 20, 40, 0.25) 40%, rgba(10, 20, 40, 0.7) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 0 40px 60px;
+    }
+
+    /* Top left info block */
+    .hero-topleft {
+      position: absolute;
+      left: 40px;
+      top: 50%;
+      transform: translateY(-20%);
+      max-width: 210px;
+    }
+
+    .hero-topleft-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 10px;
+    }
+
+    .hero-topleft p {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.65;
+    }
+
+    .hero-avatars {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px
+    }
+
+    .av-stack {
+      display: flex
+    }
+
+    .av-stack .av {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .av-stack .av:first-child {
+      margin-left: 0
+    }
+
+    .av-label {
+      font-size: 0.73rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 600
+    }
+
+    /* Main headline */
+    .hero-headline {
+      position: absolute;
+      left: 50%;
+      bottom: 160px;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 100%;
+      max-width: 720px;
+      padding: 0 24px;
+    }
+
+    .hero-headline h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+      color: #fff;
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .hero-headline h1 em {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.7)
+    }
+
+    .hero-headline p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+      max-width: 460px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: var(--r-pill);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28)
+    }
+
+    .btn-hero-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    /* Social pills right */
+    .hero-socials {
+      position: absolute;
+      right: 32px;
+      bottom: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(12px);
+      border-radius: var(--r-pill);
+      padding: 7px 14px;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .social-pill:hover {
+      background: rgba(255, 255, 255, 0.22)
+    }
+
+    /* Bottom bar */
+    .hero-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      border-radius: var(--r-pill);
+      padding: 10px 20px;
+      color: #fff;
+    }
+
+    .hsp-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 400
+    }
+
+    .hsp-line {
+      width: 1px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.25)
+    }
+
+    .hsp-lbl {
+      font-size: 0.73rem;
+      opacity: 0.65;
+      font-weight: 500
+    }
+
+    .hero-app-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .app-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(12px);
+      border-radius: var(--r-pill);
+      padding: 9px 16px;
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .app-btn:hover {
+      background: rgba(255, 255, 255, 0.22)
+    }
+
+    /* ── ABOUT SECTION ────────────────────────────────── */
+    .about-sec {
+      padding: 96px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      max-width: 1280px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .about-tag-col {
+      padding-right: 40px;
+      padding-top: 8px;
+    }
+
+    .about-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sub);
+      margin-bottom: 24px;
+    }
+
+    .about-main-col {
+      grid-column: span 2
+    }
+
+    .about-main-col h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .about-main-col h2 em {
+      font-style: italic;
+      color: var(--blue)
+    }
+
+    .about-main-col p {
+      font-size: 0.93rem;
+      color: var(--sub);
+      line-height: 1.8;
+      max-width: 540px;
+      margin-bottom: 28px;
+    }
+
+    .about-feature-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .feat-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--snow);
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 9px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .feat-pill:hover {
+      border-color: var(--blue);
+      background: var(--sky)
+    }
+
+    .fp-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%
+    }
+
+    .fp-blue {
+      background: var(--blue)
+    }
+
+    .fp-green {
+      background: var(--green)
+    }
+
+    .fp-teal {
+      background: var(--teal)
+    }
+
+    .fp-gold {
+      background: var(--gold)
+    }
+
+    .learn-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: var(--r-pill);
+      margin-top: 28px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .learn-btn:hover {
+      background: var(--blue);
+      transform: translateX(2px)
+    }
+
+    .btn-arrow {
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    /* ── FACILITIES BENTO ─────────────────────────────── */
+    .facilities-sec {
+      background: var(--white);
+      padding: 0 40px 96px;
+    }
+
+    .fac-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fac-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .fac-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--snow);
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      min-width: 180px;
+    }
+
+    .view-all-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: var(--r-pill);
+      transition: background 0.2s;
+    }
+
+    .view-all-btn:hover {
+      background: var(--blue)
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 14px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .bento-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: #dbe8fb;
+    }
+
+    .bento-card:hover {
+      transform: scale(1.01);
+      box-shadow: var(--shadow-lg)
+    }
+
+    .bc-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .bento-card:hover .bc-img {
+      transform: scale(1.06)
+    }
+
+    .bc-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 20, 40, 0.08) 0%, rgba(10, 20, 40, 0.65) 100%);
+    }
+
+    .bc-content {
+      position: absolute;
+      inset: 0;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bc-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--r-pill);
+      padding: 5px 12px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #fff;
+      width: fit-content;
+    }
+
+    .bc-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .bc-title {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      max-width: 200px;
+    }
+
+    .bc-arrow {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--ink);
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .bento-card:hover .bc-arrow {
+      background: var(--blue);
+      color: #fff;
+      transform: rotate(45deg)
+    }
+
+    /* big card */
+    .bento-card.big {
+      grid-row: span 2
+    }
+
+    .bc-num {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* bg images via unsplash */
+    .bg-emergency {
+      background-image: url('https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80')
+    }
+
+    .bg-icu {
+      background-image: url('https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=800&q=80')
+    }
+
+    .bg-pharmacy {
+      background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80')
+    }
+
+    .bg-opd {
+      background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80')
+    }
+
+    .bg-diagnostics {
+      background-image: url('https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80')
+    }
+
+    /* ── NEARBY / EXPLORE ─────────────────────────────── */
+    .explore-sec {
+      background: var(--snow);
+      padding: 96px 40px;
+    }
+
+    .explore-inner {
+      max-width: 1280px;
+      margin: 0 auto
+    }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center
+    }
+
+    .explore-left {}
+
+    .explore-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
+
+    .explore-left h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .explore-left h2 em {
+      font-style: italic
+    }
+
+    .explore-left p {
+      font-size: 0.9rem;
+      color: var(--sub);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-bottom: 28px
+    }
+
+    .get-started {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: var(--r-pill);
+      transition: background 0.2s;
+    }
+
+    .get-started:hover {
+      background: var(--blue)
+    }
+
+    .trust-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .trust-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--blue);
+      border-radius: 50%
+    }
+
+    .trust-txt {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500
+    }
+
+    /* Right side — image mosaic */
+    .explore-right {
+      position: relative
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 12px
+    }
+
+    .mosaic-card {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      background: #dbe8fb;
+    }
+
+    .mosaic-card:first-child {
+      grid-row: span 2
+    }
+
+    .mc-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center
+    }
+
+    .mc-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 20, 40, 0.25)
+    }
+
+    .mc-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .mc-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .mc-loc {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .mc-btn {
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .mosaic-card:hover .mc-btn {
+      background: var(--blue);
+      color: #fff;
+      transform: rotate(45deg)
+    }
+
+    /* Community card overlay */
+    .community-card {
+      background: var(--ink);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: var(--r-lg);
+      padding: 20px 22px;
+      min-width: 200px;
+      box-shadow: var(--shadow-lg);
+      z-index: 10;
+      text-align: center;
+    }
+
+    .cc-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px
+    }
+
+    .cc-email {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--r-pill);
+      padding: 8px 14px;
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.7);
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    /* ── DOCTOR ──────────────────────────────────────── */
+    .doctor-sec {
+      padding: 96px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center
+    }
+
+    .doc-left {}
+
+    .doc-img-frame {
+      width: 100%;
+      height: 480px;
+      border-radius: var(--r-lg);
+      background: linear-gradient(145deg, #dbe8fb, #c7ddfa);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .doc-img-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80') center/cover no-repeat;
+      opacity: 0.4;
+    }
+
+    .doc-initials {
+      font-family: 'Instrument Serif', serif;
+      font-size: 7rem;
+      font-style: italic;
+      color: var(--blue);
+      position: relative;
+      z-index: 1;
+      opacity: 0.6;
+      user-select: none;
+    }
+
+    .doc-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: #fff;
+      border-radius: var(--r-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .db-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--sky);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .db-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink)
+    }
+
+    .db-role {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .doc-verified-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--green);
+      color: #fff;
+      border-radius: var(--r-pill);
+      padding: 6px 14px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .doc-right {}
+
+    .doc-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .dstat {
+      background: var(--snow);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px;
+      transition: border-color 0.2s;
+    }
+
+    .dstat:hover {
+      border-color: var(--blue)
+    }
+
+    .dstat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      color: var(--ink);
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .dstat-num span {
+      color: var(--blue)
+    }
+
+    .dstat-lbl {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 500
+    }
+
+    .specialty-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px
+    }
+
+    .stag {
+      background: var(--sky);
+      color: var(--blue);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(26, 92, 232, 0.15);
+    }
+
+    /* ── REVIEWS ─────────────────────────────────────── */
+    .reviews-sec {
+      background: var(--snow);
+      padding: 96px 40px;
+    }
+
+    .reviews-inner {
+      max-width: 1280px;
+      margin: 0 auto
+    }
+
+    .reviews-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .testimonial-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-pill);
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sub);
+      margin-bottom: 14px;
+    }
+
+    .rev-score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .rev-score-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 3.5rem;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .rev-score-stars {
+      color: var(--gold);
+      font-size: 0.9rem
+    }
+
+    .rev-score-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .rev-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+
+    .rev-card:hover {
+      border-color: rgba(26, 92, 232, 0.25);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow)
+    }
+
+    .rev-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px
+    }
+
+    .rev-av {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .rev-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px
+    }
+
+    .rev-date {
+      font-size: 0.72rem;
+      color: var(--muted)
+    }
+
+    .rev-stars2 {
+      color: var(--gold);
+      font-size: 0.82rem
+    }
+
+    .rev-text {
+      font-size: 0.84rem;
+      color: var(--sub);
+      line-height: 1.78;
+      flex: 1
+    }
+
+    .rev-platform {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ── CONTACT / LOCATION ──────────────────────────── */
+    .contact-sec {
+      padding: 96px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start
+    }
+
+    .map-box {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      height: 400px;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .ci-card {
+      background: var(--snow);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .ci-card:hover {
+      border-color: var(--blue)
+    }
+
+    .ci-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .ci-lbl {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 4px
+    }
+
+    .ci-val {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.55
+    }
+
+    .ci-val a {
+      color: var(--blue)
+    }
+
+    .dir-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 15px;
+      border-radius: var(--r-md);
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(12, 17, 23, 0.2);
+    }
+
+    .dir-cta:hover {
+      background: var(--blue);
+      transform: translateY(-2px)
+    }
+
+    /* ── LOGO MARQUEE ────────────────────────────────── */
+    .marquee-sec {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: var(--white);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 56px;
+      align-items: center;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .marquee-item {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .marquee-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--border);
+      border-radius: 50%
+    }
+
+    /* ── TIMINGS STRIP ───────────────────────────────── */
+    .timings-sec {
+      background: var(--ink);
+      padding: 64px 40px;
+    }
+
+    .timings-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .timings-label {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2rem;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .timings-label small {
+      display: block;
+      font-family: 'Manrope', sans-serif;
+      font-style: normal;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .timings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .tcard {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--r-md);
+      padding: 20px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .tcard:hover {
+      border-color: rgba(26, 92, 232, 0.4);
+      background: rgba(26, 92, 232, 0.06)
+    }
+
+    .tcard-icon {
+      font-size: 1.3rem;
+      margin-bottom: 10px
+    }
+
+    .tcard-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px
+    }
+
+    .tcard-time {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5)
+    }
+
+    .tcard-badge {
+      display: inline-flex;
+      margin-top: 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--r-pill);
+    }
+
+    .tb-green {
+      background: rgba(18, 183, 106, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(18, 183, 106, 0.2)
+    }
+
+    .tb-blue {
+      background: rgba(26, 92, 232, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(26, 92, 232, 0.2)
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      padding: 60px 40px 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .fb-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .fb-desc {
+      font-size: 0.82rem;
+      color: var(--sub);
+      line-height: 1.75;
+      max-width: 260px;
+      margin-bottom: 18px
+    }
+
+    .fb-socials {
+      display: flex;
+      gap: 8px
+    }
+
+    .fb-soc {
+      width: 34px;
+      height: 34px;
+      background: var(--snow);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .fb-soc:hover {
+      border-color: var(--blue);
+      background: var(--sky)
+    }
+
+    .fc-head {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 700
+    }
+
+    .fc a {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--sub);
+      margin-bottom: 10px;
+      transition: color 0.2s
+    }
+
+    .fc a:hover {
+      color: var(--blue)
+    }
+
+    /* GIANT WORDMARK */
+    .footer-wordmark {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .wordmark {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-style: italic;
+      color: var(--border);
+      line-height: 1;
+      user-select: none;
+      transition: color 0.3s;
+      letter-spacing: -2px;
+    }
+
+    .wordmark:hover {
+      color: var(--blue)
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────── */
+    .sr {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease
+    }
+
+    .sr.show {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .sd1 {
+      transition-delay: .08s
+    }
+
+    .sd2 {
+      transition-delay: .16s
+    }
+
+    .sd3 {
+      transition-delay: .24s
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media(max-width:1024px) {
+      .bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 260px 260px
+      }
+
+      .bento-card.big {
+        grid-row: span 1
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .explore-grid,
+      .doc-grid,
+      .contact-grid {
+        grid-template-columns: 1fr
+      }
+
+      .timings-inner {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav-pill-left {
+        display: none
+      }
+
+      .about-sec {
+        grid-template-columns: 1fr;
+        padding: 64px 24px
+      }
+
+      .about-main-col {
+        grid-column: span 1
+      }
+
+      .facilities-sec,
+      .reviews-sec,
+      .contact-sec {
+        padding-left: 24px;
+        padding-right: 24px
+      }
+
+      .explore-sec,
+      .doctor-sec,
+      .timings-sec {
+        padding-left: 24px;
+        padding-right: 24px
+      }
+
+      .bento {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto
+      }
+
+      .bento-card {
+        height: 240px
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-topleft {
+        display: none
+      }
+
+      .hero-socials {
+        display: none
+      }
+
+      .timings-grid {
+        grid-template-columns: 1fr
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        padding: 40px 24px
+      }
+
+      .footer-wordmark {
+        padding: 24px
+      }
+
+      .mosaic {
+        grid-template-columns: 1fr
+      }
+
+      .community-card {
+        position: static;
+        transform: none;
+        margin-top: 12px
+      }
+
+      .doc-stats {
+        grid-template-columns: 1fr 1fr
+      }
+
+      footer {
+        overflow: hidden
+      }
+    }
+
+    @media(max-width:480px) {
+      .hero-headline h1 {
+        font-size: 2rem
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .nav-logo-name {
+        display: none
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ── NAV ─────────────────────────────────────────── -->
-<div class="nav-wrap">
-  <nav class="nav-pill-left">
-    <a href="#about">About Us</a>
-    <a href="#services">Services</a>
-    <a href="#facilities">Facilities</a>
-    <a href="#doctor">Doctor</a>
-  </nav>
-  <div class="nav-logo">
-    <div class="nav-logo-icon">🏥</div>
-    <span class="nav-logo-name">Jyoti Hospital</span>
-  </div>
-  <div class="nav-right">
-    <div class="nav-search"><span>🔍</span> Search here...</div>
-    <a href="tel:+919909166657" class="nav-book">Book Now <div class="btn-arrow" style="width:26px;height:26px;background:var(--ink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem">↗</div></a>
-    <div class="nav-menu-btn">☰</div>
-  </div>
-</div>
-
-<!-- ── HERO ─────────────────────────────────────────── -->
-<div class="hero">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <!-- top left -->
-    <div class="hero-topleft">
-      <div class="hero-topleft-label">Our Mission</div>
-      <p>We're committed to delivering high-quality emergency and specialist care in a welcoming and supportive atmosphere.</p>
-      <div class="hero-avatars">
-        <div class="av-stack">
-          <div class="av">VH</div><div class="av">MS</div><div class="av">PV</div><div class="av">RK</div>
-        </div>
-        <span class="av-label">25K+ Satisfied Patients</span>
-      </div>
-    </div>
-    <!-- centre headline -->
-    <div class="hero-headline">
-      <h1>Advanced Hospital Care,<br/><em>Find Trusted Services</em> Nearby</h1>
-      <p>Search for top-notch care and easy appointments at Jyoti Hospital — ICU, Emergency & Multispeciality in Sola, Ahmedabad.</p>
-      <div class="hero-cta-row">
-        <a href="tel:+919909166657" class="btn-hero">
-          Book Appointment
-          <div class="btn-hero-icon">↗</div>
-        </a>
-      </div>
-    </div>
-    <!-- right social pills -->
-    <div class="hero-socials">
-      <a href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank" class="social-pill">📸 Instagram</a>
-      <a href="#" class="social-pill">𝕏 Twitter</a>
-      <a href="https://www.facebook.com/JyotiHospitalICUPharmacy/" target="_blank" class="social-pill">📘 Facebook</a>
-    </div>
-    <!-- bottom bar -->
-    <div class="hero-bottom">
-      <div class="hero-stat-pill">
-        <span class="hsp-num">4.7★</span>
-        <span class="hsp-line"></span>
-        <span class="hsp-lbl">466+ Patient Reviews</span>
-      </div>
-      <div class="hero-stat-pill">
-        <span class="hsp-num">24/7</span>
-        <span class="hsp-line"></span>
-        <span class="hsp-lbl">Emergency & ICU Open</span>
-      </div>
-      <div class="hero-stat-pill">
-        <span class="hsp-num">14+</span>
-        <span class="hsp-line"></span>
-        <span class="hsp-lbl">Years of Trusted Care</span>
-      </div>
-      <div class="hero-app-btns">
-        <div class="app-btn">🍎 App Store</div>
-        <div class="app-btn">▶ Google Play</div>
-        <div class="app-btn">⬇ Download</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── MARQUEE ───────────────────────────────────────── -->
-<div class="marquee-sec">
-  <div class="marquee-track">
-    <div class="marquee-item">🏥 ICU Care <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🚑 24/7 Emergency <span class="marquee-dot"></span></div>
-    <div class="marquee-item">💊 In-House Pharmacy <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🧪 Diagnostics <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🩺 OPD Consultations <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🏠 Home Healthcare <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🫀 Cardiology <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🧬 Nephrology <span class="marquee-dot"></span></div>
-    <!-- duplicate for infinite loop -->
-    <div class="marquee-item">🏥 ICU Care <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🚑 24/7 Emergency <span class="marquee-dot"></span></div>
-    <div class="marquee-item">💊 In-House Pharmacy <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🧪 Diagnostics <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🩺 OPD Consultations <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🏠 Home Healthcare <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🫀 Cardiology <span class="marquee-dot"></span></div>
-    <div class="marquee-item">🧬 Nephrology <span class="marquee-dot"></span></div>
-  </div>
-</div>
-
-<!-- ── ABOUT ─────────────────────────────────────────── -->
-<div id="about" class="about-sec">
-  <div class="about-tag-col sr">
-    <div class="about-tag">👋 Let's know us →</div>
-  </div>
-  <div class="about-main-col sr sd1">
-    <h2>Explore Options, About <em>Jyoti Hospital,</em><br/>Your Health, Our Priority</h2>
-    <p>Jyoti Hospital is a trusted multispeciality hospital at Sola, Ahmedabad — connecting patients with top-notch ICU care, emergency services, specialist consultations, and in-house pharmacy around the clock.</p>
-    <div class="about-feature-row">
-      <div class="feat-pill"><span class="fp-dot fp-blue"></span> 24/7 Emergency</div>
-      <div class="feat-pill"><span class="fp-dot fp-green"></span> ICU Services</div>
-      <div class="feat-pill"><span class="fp-dot fp-teal"></span> In-House Pharmacy</div>
-      <div class="feat-pill"><span class="fp-dot fp-gold"></span> Free Home Care</div>
-    </div>
-    <a href="#facilities" class="learn-btn">Learn More <div class="btn-arrow">↗</div></a>
-  </div>
-</div>
-
-<!-- ── FACILITIES BENTO ──────────────────────────────── -->
-<section id="facilities" class="facilities-sec">
-  <div class="fac-header sr">
-    <span class="fac-title">Facilities</span>
-    <span style="font-weight:700;font-size:1rem;color:var(--ink)">Explore Our Facilities</span>
-    <div class="fac-search"><span>🔍</span> Search here...</div>
-    <a href="#" class="view-all-btn">View All ↗</a>
-  </div>
-  <div class="bento sr">
-    <!-- big card -->
-    <div class="bento-card big">
-      <div class="bc-img bg-emergency"></div>
-      <div class="bc-overlay"></div>
-      <div class="bc-content">
-        <div class="bc-tag">🚨 Emergency Care</div>
-        <div class="bc-bottom">
-          <div>
-            <div class="bc-title">Comfortable & rapid emergency response, any time</div>
-          </div>
-          <div class="bc-arrow">↗</div>
-        </div>
-      </div>
-      <div class="bc-num">01</div>
-    </div>
-    <!-- top right -->
-    <div class="bento-card">
-      <div class="bc-img bg-opd"></div>
-      <div class="bc-overlay"></div>
-      <div class="bc-content">
-        <div class="bc-tag">🩺 Outpatient Services</div>
-        <div class="bc-bottom">
-          <div class="bc-title">Specialist OPD consultations across all departments</div>
-          <div class="bc-arrow">↗</div>
-        </div>
-      </div>
-      <div class="bc-num">02</div>
-    </div>
-    <div class="bento-card">
-      <div class="bc-img bg-icu"></div>
-      <div class="bc-overlay"></div>
-      <div class="bc-content">
-        <div class="bc-tag">🫀 Inpatient Services</div>
-        <div class="bc-bottom">
-          <div class="bc-title">Advanced ICU with round-the-clock critical care</div>
-          <div class="bc-arrow">↗</div>
-        </div>
-      </div>
-      <div class="bc-num">03</div>
-    </div>
-    <!-- bottom right -->
-    <div class="bento-card">
-      <div class="bc-img bg-diagnostics"></div>
-      <div class="bc-overlay"></div>
-      <div class="bc-content">
-        <div class="bc-tag">🔬 Diagnostics</div>
-        <div class="bc-bottom">
-          <div class="bc-title">ECG, X-Ray, TMT & advanced lab testing</div>
-          <div class="bc-arrow">↗</div>
-        </div>
-      </div>
-      <div class="bc-num">04</div>
-    </div>
-    <div class="bento-card">
-      <div class="bc-img bg-pharmacy"></div>
-      <div class="bc-overlay"></div>
-      <div class="bc-content">
-        <div class="bc-tag">💊 Pharmacy</div>
-        <div class="bc-bottom">
-          <div class="bc-title">On-site pharmacy with all medications, 24 hours</div>
-          <div class="bc-arrow">↗</div>
-        </div>
-      </div>
-      <div class="bc-num">05</div>
-    </div>
-    <!-- appointment card -->
-    <div class="bento-card" style="background:var(--sky);border:1.5px solid var(--border)">
-      <div class="bc-content" style="justify-content:center;text-align:center;align-items:center;gap:16px">
-        <div style="font-size:2.5rem">📋</div>
-        <div>
-          <div style="font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:8px">Book an Appointment</div>
-          <div style="font-size:0.78rem;color:var(--sub);line-height:1.6">For personalised consultations, specialist treatments, or routine check-ups — take a step towards better health.</div>
-        </div>
-        <a href="tel:+919909166657" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:0.82rem;font-weight:700;padding:10px 20px;border-radius:var(--r-pill)">📞 Call Now ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── EXPLORE / NEARBY ───────────────────────────────── -->
-<section class="explore-sec">
-  <div class="explore-inner">
-    <div class="explore-grid">
-      <div class="explore-left sr">
-        <div class="explore-tag">→ Explore Hospital</div>
-        <h2>Jyoti Hospital — <em>Trusted Care</em><br/>Made Easy, Explore!</h2>
-        <p>Find top-notch healthcare services at Jyoti Hospital, Sola, Ahmedabad with ease — and access expert care tailored to your needs.</p>
-        <a href="tel:+919909166657" class="get-started">Get started <div style="width:26px;height:26px;background:rgba(255,255,255,0.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem">↗</div></a>
-        <div class="trust-row">
-          <div class="trust-dot"></div>
-          <span class="trust-txt">466+ patient reviews across platforms</span>
-        </div>
-      </div>
-      <div class="explore-right sr sd1">
-        <div class="mosaic">
-          <div class="mosaic-card">
-            <div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80')"></div>
-            <div class="mc-overlay"></div>
-            <div class="mc-label">
-              <div>
-                <div class="mc-title">Jyoti Hospital Main</div>
-                <div class="mc-loc">📍 Sola, Ahmedabad</div>
-              </div>
-              <div class="mc-btn">↗</div>
-            </div>
-          </div>
-          <div class="mosaic-card">
-            <div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&q=80')"></div>
-            <div class="mc-overlay"></div>
-            <div class="mc-label">
-              <div>
-                <div class="mc-title">Emergency Wing</div>
-                <div class="mc-loc">📍 24/7 Open</div>
-              </div>
-              <div class="mc-btn">↗</div>
-            </div>
-          </div>
-          <div class="mosaic-card">
-            <div class="mc-img" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80')"></div>
-            <div class="mc-overlay"></div>
-            <div class="mc-label">
-              <div>
-                <div class="mc-title">ICU & Critical Care</div>
-                <div class="mc-loc">📍 Science City Rd</div>
-              </div>
-              <div class="mc-btn">↗</div>
-            </div>
-          </div>
-        </div>
-        <div class="community-card" style="position:relative;top:auto;left:auto;transform:none;margin-top:16px">
-          <div class="cc-title">Join our patient community</div>
-          <div class="cc-email">
-            <span>support@jyotihospital.in</span>
-            <div style="width:26px;height:26px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:#fff;flex-shrink:0">↗</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── DOCTOR ─────────────────────────────────────────── -->
-<section id="doctor" class="doctor-sec">
-  <div class="doc-grid">
-    <div class="doc-left sr">
-      <div class="doc-img-frame">
-        <div class="doc-img-bg"></div>
-        <div class="doc-initials">UG</div>
-        <div class="doc-badge">
-          <div class="db-icon">👨‍⚕️</div>
-          <div>
-            <div class="db-name">Dr. Umesh Gurjar</div>
-            <div class="db-role">General Physician & Multispecialist</div>
-          </div>
-        </div>
-        <div class="doc-verified-badge">✓ Verified Doctor</div>
-      </div>
-    </div>
-    <div class="doc-right sr sd1">
-      <div class="about-tag" style="margin-bottom:16px">👨‍⚕️ Meet Our Expert</div>
-      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--ink);line-height:1.2;margin-bottom:14px">Dr. Umesh Gurjar — <em>14+ Years</em> of Expert Care</h2>
-      <p style="font-size:0.9rem;color:var(--sub);line-height:1.8;margin-bottom:20px">A seasoned physician known for precision diagnosis and a patient-first approach. Dr. Gurjar manages acute infections, cardiac events, chronic diseases, and respiratory conditions with calm expertise and genuine compassion.</p>
-      <div class="doc-stats">
-        <div class="dstat"><div class="dstat-num">14<span>+</span></div><div class="dstat-lbl">Years Experience</div></div>
-        <div class="dstat"><div class="dstat-num">4.7<span>★</span></div><div class="dstat-lbl">Patient Rating</div></div>
-        <div class="dstat"><div class="dstat-num">466<span>+</span></div><div class="dstat-lbl">Reviews</div></div>
-        <div class="dstat"><div class="dstat-num">24<span>/7</span></div><div class="dstat-lbl">Availability</div></div>
-      </div>
-      <div class="specialty-tags">
-        <span class="stag">Fever & Infections</span>
-        <span class="stag">Diabetes</span>
-        <span class="stag">Hypertension</span>
-        <span class="stag">Cardiac Care</span>
-        <span class="stag">Respiratory</span>
-        <span class="stag">Dengue</span>
-        <span class="stag">Gastritis</span>
-        <span class="stag">Arthritis</span>
-      </div>
-      <a href="tel:+919909166657" class="learn-btn" style="margin-top:24px">Book Appointment <div class="btn-arrow">↗</div></a>
-    </div>
-  </div>
-</section>
-
-<!-- ── REVIEWS ─────────────────────────────────────────── -->
-<section id="reviews" class="reviews-sec">
-  <div class="reviews-inner">
-    <div class="reviews-header sr">
-      <div>
-        <div class="testimonial-tag">😊 Testimonial</div>
-        <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--ink);max-width:500px;line-height:1.2">With dedication & expertise, we strive to provide more than just treatments — <em>a comforting journey.</em></h2>
-      </div>
-      <div>
-        <div class="rev-score-row">
-          <div class="rev-score-num">4.7</div>
-          <div>
-            <div class="rev-score-stars">★★★★★</div>
-            <div class="rev-score-note">466+ verified reviews</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="reviews-grid sr">
-      <div class="rev-card">
-        <div class="rev-top">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div class="rev-av">VH</div>
-            <div>
-              <div class="rev-name">Valjibhai Humbal</div>
-              <div class="rev-date">Verified · Google</div>
-            </div>
-          </div>
-          <div class="rev-stars2">★★★★★</div>
-        </div>
-        <p class="rev-text">I was admitted with nausea, vomiting, and high fever. The staff took incredible care of me, and under Dr. Umesh Gurjar's guidance I had a very speedy recovery. I wholeheartedly recommend Jyoti Hospital to everyone.</p>
-        <div class="rev-platform">🌐 Google Maps · Sola, Ahmedabad</div>
-      </div>
-      <div class="rev-card">
-        <div class="rev-top">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div class="rev-av">PS</div>
-            <div>
-              <div class="rev-name">Father of Meet Sheth</div>
-              <div class="rev-date">Verified · Google</div>
-            </div>
-          </div>
-          <div class="rev-stars2">★★★★★</div>
-        </div>
-        <p class="rev-text">My son had high fever and severe body pain. Dr. Gurjar's diagnosis was excellent — he identified the condition in minutes. We recovered completely within days. The nursing staff and overall hospitality were outstanding.</p>
-        <div class="rev-platform">🌐 Google Maps · Sola, Ahmedabad</div>
-      </div>
-      <div class="rev-card">
-        <div class="rev-top">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div class="rev-av">PV</div>
-            <div>
-              <div class="rev-name">Pinki Vishwakarma</div>
-              <div class="rev-date">Verified · Google</div>
-            </div>
-          </div>
-          <div class="rev-stars2">★★★★★</div>
-        </div>
-        <p class="rev-text">I had weakness, high-grade fever, dehydration and body ache. After IV treatment at Jyoti Hospital I recovered in just 3 days. Very clean, very homely — and the staff is incredibly cooperative and caring.</p>
-        <div class="rev-platform">🌐 Google Maps · Sola, Ahmedabad</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TIMINGS ────────────────────────────────────────── -->
-<div class="timings-sec">
-  <div class="timings-inner">
-    <div class="sr">
-      <div class="timings-label">
-        <small>Opening Hours</small>
-        Hospital<br/><em style="font-style:italic">Schedule</em>
-      </div>
-    </div>
-    <div class="timings-grid sr sd1">
-      <div class="tcard">
-        <div class="tcard-icon">🩺</div>
-        <div class="tcard-title">OPD Consultations</div>
-        <div class="tcard-time">Mon – Sun · 11:00 AM – 5:00 PM</div>
-        <div class="tcard-badge tb-blue">All Days</div>
-      </div>
-      <div class="tcard">
-        <div class="tcard-icon">🚑</div>
-        <div class="tcard-title">Emergency & ICU</div>
-        <div class="tcard-time">24 Hours · 7 Days a Week</div>
-        <div class="tcard-badge tb-green">Always Open</div>
-      </div>
-      <div class="tcard">
-        <div class="tcard-icon">💊</div>
-        <div class="tcard-title">In-House Pharmacy</div>
-        <div class="tcard-time">24 Hours · 7 Days a Week</div>
-        <div class="tcard-badge tb-green">Always Open</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── CONTACT ────────────────────────────────────────── -->
-<section id="contact" class="contact-sec">
-  <div class="sr" style="margin-bottom:40px">
-    <div class="about-tag" style="margin-bottom:14px">📍 Find Us</div>
-    <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--ink);line-height:1.2">Location & <em>Contact Details</em></h2>
-  </div>
-  <div class="contact-grid">
-    <div class="map-box sr">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.5!2d72.5310!3d23.0730!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e832a!2sJyoti+Hospital+ICU+%26+Pharmacy!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
-        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="contact-info sr sd1">
-      <div class="ci-card">
-        <div class="ci-icon">📍</div>
-        <div>
-          <div class="ci-lbl">Address</div>
-          <div class="ci-val">Galaxy Signature, B-4/7, 1st Floor, Science City Rd,<br/>Opp. Sukan Bunglows, Sola, Ahmedabad – 380060</div>
-        </div>
-      </div>
-      <div class="ci-card">
-        <div class="ci-icon">📞</div>
-        <div>
-          <div class="ci-lbl">Phone / Emergency</div>
-          <div class="ci-val"><a href="tel:+919909166657">+91 99091 66657</a> &nbsp;·&nbsp; <a href="tel:+919909166658">+91 99091 66658</a></div>
-        </div>
-      </div>
-      <div class="ci-card">
-        <div class="ci-icon">🏁</div>
-        <div>
-          <div class="ci-lbl">Landmark</div>
-          <div class="ci-val">Near Reliance Fresh · Opp. R K Royal · Sukan Bunglows-1</div>
-        </div>
-      </div>
-      <div class="ci-card">
-        <div class="ci-icon">📲</div>
-        <div>
-          <div class="ci-lbl">Instagram</div>
-          <div class="ci-val"><a href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank">@jyoti.hospital.icu</a></div>
-        </div>
-      </div>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Jyoti+Hospital+Sola+Ahmedabad" target="_blank" class="dir-cta">🗺️ Get Directions to Jyoti Hospital</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ─────────────────────────────────────────── -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="fb-name">Jyoti Hospital</div>
-      <p class="fb-desc">Our top-tier medical facilities offer a comprehensive range of services including advanced diagnostics, specialist care, 24/7 emergency, and ICU services.</p>
-      <div class="fb-socials">
-        <a class="fb-soc" href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank">📸</a>
-        <a class="fb-soc" href="#" target="_blank">𝕏</a>
-        <a class="fb-soc" href="https://www.facebook.com/JyotiHospitalICUPharmacy/" target="_blank">📘</a>
-        <a class="fb-soc" href="tel:+919909166657">📞</a>
-      </div>
-    </div>
-    <div class="fc">
-      <div class="fc-head">About</div>
+  <!-- ── NAV ─────────────────────────────────────────── -->
+  <div class="nav-wrap">
+    <nav class="nav-pill-left">
       <a href="#about">About Us</a>
+      <a href="#services">Services</a>
       <a href="#facilities">Facilities</a>
-      <a href="#doctor">Our Doctor</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#doctor">Doctor</a>
+    </nav>
+    <div class="nav-logo">
+      <div class="nav-logo-icon">🏥</div>
+      <span class="nav-logo-name">Jyoti Hospital</span>
     </div>
-    <div class="fc">
-      <div class="fc-head">Services</div>
-      <a href="#facilities">Emergency</a>
-      <a href="#facilities">ICU</a>
-      <a href="#facilities">Pharmacy</a>
-      <a href="#facilities">Diagnostics</a>
-      <a href="#facilities">Home Care</a>
-    </div>
-    <div class="fc">
-      <div class="fc-head">Contact</div>
-      <a href="tel:+919909166657">+91 99091 66657</a>
-      <a href="tel:+919909166658">+91 99091 66658</a>
-      <a href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank">Instagram</a>
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Jyoti+Hospital+Sola+Ahmedabad" target="_blank">Directions</a>
+    <div class="nav-right">
+      <div class="nav-search"><span>🔍</span> Search here...</div>
+      <a href="tel:+919909166657" class="nav-book">Book Now <div class="btn-arrow"
+          style="width:26px;height:26px;background:var(--ink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem">
+          ↗</div></a>
+      <div class="nav-menu-btn">☰</div>
     </div>
   </div>
-  <div class="footer-wordmark">
-    <div class="wordmark">JYOTI—</div>
-    <div class="wordmark">HOSPITAL</div>
-  </div>
-  <div style="padding:16px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);font-size:0.76rem;color:var(--muted);flex-wrap:wrap;gap:8px">
-    <span>About us · FAQ · Contact us →</span>
-    <span>© 2025 Jyoti Hospital. All Rights Reserved.</span>
-  </div>
-</footer>
 
-<script>
-// Scroll reveal
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show') });
-}, { threshold: 0.1 });
-document.querySelectorAll('.sr').forEach(el => io.observe(el));
-</script>
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <!-- top left -->
+      <div class="hero-topleft">
+        <div class="hero-topleft-label">Our Mission</div>
+        <p>We're committed to delivering high-quality emergency and specialist care in a welcoming and supportive
+          atmosphere.</p>
+        <div class="hero-avatars">
+          <div class="av-stack">
+            <div class="av">VH</div>
+            <div class="av">MS</div>
+            <div class="av">PV</div>
+            <div class="av">RK</div>
+          </div>
+          <span class="av-label">25K+ Satisfied Patients</span>
+        </div>
+      </div>
+      <!-- centre headline -->
+      <div class="hero-headline">
+        <h1>Advanced Hospital Care,<br /><em>Find Trusted Services</em> Nearby</h1>
+        <p>Search for top-notch care and easy appointments at Jyoti Hospital — ICU, Emergency & Multispeciality in Sola,
+          Ahmedabad.</p>
+        <div class="hero-cta-row">
+          <a href="tel:+919909166657" class="btn-hero">
+            Book Appointment
+            <div class="btn-hero-icon">↗</div>
+          </a>
+        </div>
+      </div>
+      <!-- right social pills -->
+      <div class="hero-socials">
+        <a href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank" class="social-pill">📸 Instagram</a>
+        <a href="#" class="social-pill">𝕏 Twitter</a>
+        <a href="https://www.facebook.com/JyotiHospitalICUPharmacy/" target="_blank" class="social-pill">📘 Facebook</a>
+      </div>
+      <!-- bottom bar -->
+      <div class="hero-bottom">
+        <div class="hero-stat-pill">
+          <span class="hsp-num">4.7★</span>
+          <span class="hsp-line"></span>
+          <span class="hsp-lbl">466+ Patient Reviews</span>
+        </div>
+        <div class="hero-stat-pill">
+          <span class="hsp-num">24/7</span>
+          <span class="hsp-line"></span>
+          <span class="hsp-lbl">Emergency & ICU Open</span>
+        </div>
+        <div class="hero-stat-pill">
+          <span class="hsp-num">14+</span>
+          <span class="hsp-line"></span>
+          <span class="hsp-lbl">Years of Trusted Care</span>
+        </div>
+        <div class="hero-app-btns">
+          <div class="app-btn">🍎 App Store</div>
+          <div class="app-btn">▶ Google Play</div>
+          <div class="app-btn">⬇ Download</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MARQUEE ───────────────────────────────────────── -->
+  <div class="marquee-sec">
+    <div class="marquee-track">
+      <div class="marquee-item">🏥 ICU Care <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🚑 24/7 Emergency <span class="marquee-dot"></span></div>
+      <div class="marquee-item">💊 In-House Pharmacy <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🧪 Diagnostics <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🩺 OPD Consultations <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🏠 Home Healthcare <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🫀 Cardiology <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🧬 Nephrology <span class="marquee-dot"></span></div>
+      <!-- duplicate for infinite loop -->
+      <div class="marquee-item">🏥 ICU Care <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🚑 24/7 Emergency <span class="marquee-dot"></span></div>
+      <div class="marquee-item">💊 In-House Pharmacy <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🧪 Diagnostics <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🩺 OPD Consultations <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🏠 Home Healthcare <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🫀 Cardiology <span class="marquee-dot"></span></div>
+      <div class="marquee-item">🧬 Nephrology <span class="marquee-dot"></span></div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ─────────────────────────────────────────── -->
+  <div id="about" class="about-sec">
+    <div class="about-tag-col sr">
+      <div class="about-tag">👋 Let's know us →</div>
+    </div>
+    <div class="about-main-col sr sd1">
+      <h2>Explore Options, About <em>Jyoti Hospital,</em><br />Your Health, Our Priority</h2>
+      <p>Jyoti Hospital is a trusted multispeciality hospital at Sola, Ahmedabad — connecting patients with top-notch
+        ICU care, emergency services, specialist consultations, and in-house pharmacy around the clock.</p>
+      <div class="about-feature-row">
+        <div class="feat-pill"><span class="fp-dot fp-blue"></span> 24/7 Emergency</div>
+        <div class="feat-pill"><span class="fp-dot fp-green"></span> ICU Services</div>
+        <div class="feat-pill"><span class="fp-dot fp-teal"></span> In-House Pharmacy</div>
+        <div class="feat-pill"><span class="fp-dot fp-gold"></span> Free Home Care</div>
+      </div>
+      <a href="#facilities" class="learn-btn">Learn More <div class="btn-arrow">↗</div></a>
+    </div>
+  </div>
+
+  <!-- ── FACILITIES BENTO ──────────────────────────────── -->
+  <section id="facilities" class="facilities-sec">
+    <div class="fac-header sr">
+      <span class="fac-title">Facilities</span>
+      <span style="font-weight:700;font-size:1rem;color:var(--ink)">Explore Our Facilities</span>
+      <div class="fac-search"><span>🔍</span> Search here...</div>
+      <a href="#" class="view-all-btn">View All ↗</a>
+    </div>
+    <div class="bento sr">
+      <!-- big card -->
+      <div class="bento-card big">
+        <div class="bc-img bg-emergency"></div>
+        <div class="bc-overlay"></div>
+        <div class="bc-content">
+          <div class="bc-tag">🚨 Emergency Care</div>
+          <div class="bc-bottom">
+            <div>
+              <div class="bc-title">Comfortable & rapid emergency response, any time</div>
+            </div>
+            <div class="bc-arrow">↗</div>
+          </div>
+        </div>
+        <div class="bc-num">01</div>
+      </div>
+      <!-- top right -->
+      <div class="bento-card">
+        <div class="bc-img bg-opd"></div>
+        <div class="bc-overlay"></div>
+        <div class="bc-content">
+          <div class="bc-tag">🩺 Outpatient Services</div>
+          <div class="bc-bottom">
+            <div class="bc-title">Specialist OPD consultations across all departments</div>
+            <div class="bc-arrow">↗</div>
+          </div>
+        </div>
+        <div class="bc-num">02</div>
+      </div>
+      <div class="bento-card">
+        <div class="bc-img bg-icu"></div>
+        <div class="bc-overlay"></div>
+        <div class="bc-content">
+          <div class="bc-tag">🫀 Inpatient Services</div>
+          <div class="bc-bottom">
+            <div class="bc-title">Advanced ICU with round-the-clock critical care</div>
+            <div class="bc-arrow">↗</div>
+          </div>
+        </div>
+        <div class="bc-num">03</div>
+      </div>
+      <!-- bottom right -->
+      <div class="bento-card">
+        <div class="bc-img bg-diagnostics"></div>
+        <div class="bc-overlay"></div>
+        <div class="bc-content">
+          <div class="bc-tag">🔬 Diagnostics</div>
+          <div class="bc-bottom">
+            <div class="bc-title">ECG, X-Ray, TMT & advanced lab testing</div>
+            <div class="bc-arrow">↗</div>
+          </div>
+        </div>
+        <div class="bc-num">04</div>
+      </div>
+      <div class="bento-card">
+        <div class="bc-img bg-pharmacy"></div>
+        <div class="bc-overlay"></div>
+        <div class="bc-content">
+          <div class="bc-tag">💊 Pharmacy</div>
+          <div class="bc-bottom">
+            <div class="bc-title">On-site pharmacy with all medications, 24 hours</div>
+            <div class="bc-arrow">↗</div>
+          </div>
+        </div>
+        <div class="bc-num">05</div>
+      </div>
+      <!-- appointment card -->
+      <div class="bento-card" style="background:var(--sky);border:1.5px solid var(--border)">
+        <div class="bc-content" style="justify-content:center;text-align:center;align-items:center;gap:16px">
+          <div style="font-size:2.5rem">📋</div>
+          <div>
+            <div style="font-size:0.88rem;font-weight:700;color:var(--ink);margin-bottom:8px">Book an Appointment</div>
+            <div style="font-size:0.78rem;color:var(--sub);line-height:1.6">For personalised consultations, specialist
+              treatments, or routine check-ups — take a step towards better health.</div>
+          </div>
+          <a href="tel:+919909166657"
+            style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:0.82rem;font-weight:700;padding:10px 20px;border-radius:var(--r-pill)">📞
+            Call Now ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPLORE / NEARBY ───────────────────────────────── -->
+  <section class="explore-sec">
+    <div class="explore-inner">
+      <div class="explore-grid">
+        <div class="explore-left sr">
+          <div class="explore-tag">→ Explore Hospital</div>
+          <h2>Jyoti Hospital — <em>Trusted Care</em><br />Made Easy, Explore!</h2>
+          <p>Find top-notch healthcare services at Jyoti Hospital, Sola, Ahmedabad with ease — and access expert care
+            tailored to your needs.</p>
+          <a href="tel:+919909166657" class="get-started">Get started <div
+              style="width:26px;height:26px;background:rgba(255,255,255,0.18);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem">
+              ↗</div></a>
+          <div class="trust-row">
+            <div class="trust-dot"></div>
+            <span class="trust-txt">466+ patient reviews across platforms</span>
+          </div>
+        </div>
+        <div class="explore-right sr sd1">
+          <div class="mosaic">
+            <div class="mosaic-card">
+              <div class="mc-img"
+                style="background-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80')">
+              </div>
+              <div class="mc-overlay"></div>
+              <div class="mc-label">
+                <div>
+                  <div class="mc-title">Jyoti Hospital Main</div>
+                  <div class="mc-loc">📍 Sola, Ahmedabad</div>
+                </div>
+                <div class="mc-btn">↗</div>
+              </div>
+            </div>
+            <div class="mosaic-card">
+              <div class="mc-img"
+                style="background-image:url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=600&q=80')">
+              </div>
+              <div class="mc-overlay"></div>
+              <div class="mc-label">
+                <div>
+                  <div class="mc-title">Emergency Wing</div>
+                  <div class="mc-loc">📍 24/7 Open</div>
+                </div>
+                <div class="mc-btn">↗</div>
+              </div>
+            </div>
+            <div class="mosaic-card">
+              <div class="mc-img"
+                style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80')">
+              </div>
+              <div class="mc-overlay"></div>
+              <div class="mc-label">
+                <div>
+                  <div class="mc-title">ICU & Critical Care</div>
+                  <div class="mc-loc">📍 Science City Rd</div>
+                </div>
+                <div class="mc-btn">↗</div>
+              </div>
+            </div>
+          </div>
+          <div class="community-card" style="position:relative;top:auto;left:auto;transform:none;margin-top:16px">
+            <div class="cc-title">Join our patient community</div>
+            <div class="cc-email">
+              <span>support@jyotihospital.in</span>
+              <div
+                style="width:26px;height:26px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:#fff;flex-shrink:0">
+                ↗</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DOCTOR ─────────────────────────────────────────── -->
+  <section id="doctor" class="doctor-sec">
+    <div class="doc-grid">
+      <div class="doc-left sr">
+        <div class="doc-img-frame">
+          <div class="doc-img-bg"></div>
+          <div class="doc-initials">UG</div>
+          <div class="doc-badge">
+            <div class="db-icon">👨‍⚕️</div>
+            <div>
+              <div class="db-name">Dr. Umesh Gurjar</div>
+              <div class="db-role">General Physician & Multispecialist</div>
+            </div>
+          </div>
+          <div class="doc-verified-badge">✓ Verified Doctor</div>
+        </div>
+      </div>
+      <div class="doc-right sr sd1">
+        <div class="about-tag" style="margin-bottom:16px">👨‍⚕️ Meet Our Expert</div>
+        <h2
+          style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--ink);line-height:1.2;margin-bottom:14px">
+          Dr. Umesh Gurjar — <em>14+ Years</em> of Expert Care</h2>
+        <p style="font-size:0.9rem;color:var(--sub);line-height:1.8;margin-bottom:20px">A seasoned physician known for
+          precision diagnosis and a patient-first approach. Dr. Gurjar manages acute infections, cardiac events, chronic
+          diseases, and respiratory conditions with calm expertise and genuine compassion.</p>
+        <div class="doc-stats">
+          <div class="dstat">
+            <div class="dstat-num">14<span>+</span></div>
+            <div class="dstat-lbl">Years Experience</div>
+          </div>
+          <div class="dstat">
+            <div class="dstat-num">4.7<span>★</span></div>
+            <div class="dstat-lbl">Patient Rating</div>
+          </div>
+          <div class="dstat">
+            <div class="dstat-num">466<span>+</span></div>
+            <div class="dstat-lbl">Reviews</div>
+          </div>
+          <div class="dstat">
+            <div class="dstat-num">24<span>/7</span></div>
+            <div class="dstat-lbl">Availability</div>
+          </div>
+        </div>
+        <div class="specialty-tags">
+          <span class="stag">Fever & Infections</span>
+          <span class="stag">Diabetes</span>
+          <span class="stag">Hypertension</span>
+          <span class="stag">Cardiac Care</span>
+          <span class="stag">Respiratory</span>
+          <span class="stag">Dengue</span>
+          <span class="stag">Gastritis</span>
+          <span class="stag">Arthritis</span>
+        </div>
+        <a href="tel:+919909166657" class="learn-btn" style="margin-top:24px">Book Appointment <div class="btn-arrow">↗
+          </div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REVIEWS ─────────────────────────────────────────── -->
+  <section id="reviews" class="reviews-sec">
+    <div class="reviews-inner">
+      <div class="reviews-header sr">
+        <div>
+          <div class="testimonial-tag">😊 Testimonial</div>
+          <h2
+            style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--ink);max-width:500px;line-height:1.2">
+            With dedication & expertise, we strive to provide more than just treatments — <em>a comforting journey.</em>
+          </h2>
+        </div>
+        <div>
+          <div class="rev-score-row">
+            <div class="rev-score-num">4.7</div>
+            <div>
+              <div class="rev-score-stars">★★★★★</div>
+              <div class="rev-score-note">466+ verified reviews</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-grid sr">
+        <div class="rev-card">
+          <div class="rev-top">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rev-av">VH</div>
+              <div>
+                <div class="rev-name">Valjibhai Humbal</div>
+                <div class="rev-date">Verified · Google</div>
+              </div>
+            </div>
+            <div class="rev-stars2">★★★★★</div>
+          </div>
+          <p class="rev-text">I was admitted with nausea, vomiting, and high fever. The staff took incredible care of
+            me, and under Dr. Umesh Gurjar's guidance I had a very speedy recovery. I wholeheartedly recommend Jyoti
+            Hospital to everyone.</p>
+          <div class="rev-platform">🌐 Google Maps · Sola, Ahmedabad</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rev-av">PS</div>
+              <div>
+                <div class="rev-name">Father of Meet Sheth</div>
+                <div class="rev-date">Verified · Google</div>
+              </div>
+            </div>
+            <div class="rev-stars2">★★★★★</div>
+          </div>
+          <p class="rev-text">My son had high fever and severe body pain. Dr. Gurjar's diagnosis was excellent — he
+            identified the condition in minutes. We recovered completely within days. The nursing staff and overall
+            hospitality were outstanding.</p>
+          <div class="rev-platform">🌐 Google Maps · Sola, Ahmedabad</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="rev-av">PV</div>
+              <div>
+                <div class="rev-name">Pinki Vishwakarma</div>
+                <div class="rev-date">Verified · Google</div>
+              </div>
+            </div>
+            <div class="rev-stars2">★★★★★</div>
+          </div>
+          <p class="rev-text">I had weakness, high-grade fever, dehydration and body ache. After IV treatment at Jyoti
+            Hospital I recovered in just 3 days. Very clean, very homely — and the staff is incredibly cooperative and
+            caring.</p>
+          <div class="rev-platform">🌐 Google Maps · Sola, Ahmedabad</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIMINGS ────────────────────────────────────────── -->
+  <div class="timings-sec">
+    <div class="timings-inner">
+      <div class="sr">
+        <div class="timings-label">
+          <small>Opening Hours</small>
+          Hospital<br /><em style="font-style:italic">Schedule</em>
+        </div>
+      </div>
+      <div class="timings-grid sr sd1">
+        <div class="tcard">
+          <div class="tcard-icon">🩺</div>
+          <div class="tcard-title">OPD Consultations</div>
+          <div class="tcard-time">Mon – Sun · 11:00 AM – 5:00 PM</div>
+          <div class="tcard-badge tb-blue">All Days</div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon">🚑</div>
+          <div class="tcard-title">Emergency & ICU</div>
+          <div class="tcard-time">24 Hours · 7 Days a Week</div>
+          <div class="tcard-badge tb-green">Always Open</div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-icon">💊</div>
+          <div class="tcard-title">In-House Pharmacy</div>
+          <div class="tcard-time">24 Hours · 7 Days a Week</div>
+          <div class="tcard-badge tb-green">Always Open</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONTACT ────────────────────────────────────────── -->
+  <section id="contact" class="contact-sec">
+    <div class="sr" style="margin-bottom:40px">
+      <div class="about-tag" style="margin-bottom:14px">📍 Find Us</div>
+      <h2
+        style="font-family:'Instrument Serif',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--ink);line-height:1.2">
+        Location & <em>Contact Details</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="map-box sr">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.5!2d72.5310!3d23.0730!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e832a!2sJyoti+Hospital+ICU+%26+Pharmacy!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="contact-info sr sd1">
+        <div class="ci-card">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-lbl">Address</div>
+            <div class="ci-val">Galaxy Signature, B-4/7, 1st Floor, Science City Rd,<br />Opp. Sukan Bunglows, Sola,
+              Ahmedabad – 380060</div>
+          </div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-lbl">Phone / Emergency</div>
+            <div class="ci-val"><a href="tel:+919909166657">+91 99091 66657</a> &nbsp;·&nbsp; <a
+                href="tel:+919909166658">+91 99091 66658</a></div>
+          </div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon">🏁</div>
+          <div>
+            <div class="ci-lbl">Landmark</div>
+            <div class="ci-val">Near Reliance Fresh · Opp. R K Royal · Sukan Bunglows-1</div>
+          </div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-icon">📲</div>
+          <div>
+            <div class="ci-lbl">Instagram</div>
+            <div class="ci-val"><a href="https://www.instagram.com/jyoti.hospital.icu/"
+                target="_blank">@jyoti.hospital.icu</a></div>
+          </div>
+        </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Jyoti+Hospital+Sola+Ahmedabad" target="_blank"
+          class="dir-cta">🗺️ Get Directions to Jyoti Hospital</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="fb-name">Jyoti Hospital</div>
+        <p class="fb-desc">Our top-tier medical facilities offer a comprehensive range of services including advanced
+          diagnostics, specialist care, 24/7 emergency, and ICU services.</p>
+        <div class="fb-socials">
+          <a class="fb-soc" href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank">📸</a>
+          <a class="fb-soc" href="#" target="_blank">𝕏</a>
+          <a class="fb-soc" href="https://www.facebook.com/JyotiHospitalICUPharmacy/" target="_blank">📘</a>
+          <a class="fb-soc" href="tel:+919909166657">📞</a>
+        </div>
+      </div>
+      <div class="fc">
+        <div class="fc-head">About</div>
+        <a href="#about">About Us</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#doctor">Our Doctor</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="fc">
+        <div class="fc-head">Services</div>
+        <a href="#facilities">Emergency</a>
+        <a href="#facilities">ICU</a>
+        <a href="#facilities">Pharmacy</a>
+        <a href="#facilities">Diagnostics</a>
+        <a href="#facilities">Home Care</a>
+      </div>
+      <div class="fc">
+        <div class="fc-head">Contact</div>
+        <a href="tel:+919909166657">+91 99091 66657</a>
+        <a href="tel:+919909166658">+91 99091 66658</a>
+        <a href="https://www.instagram.com/jyoti.hospital.icu/" target="_blank">Instagram</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Jyoti+Hospital+Sola+Ahmedabad"
+          target="_blank">Directions</a>
+      </div>
+    </div>
+    <div class="footer-wordmark">
+      <div class="wordmark">JYOTI—</div>
+      <div class="wordmark">HOSPITAL</div>
+    </div>
+    <div
+      style="padding:16px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);font-size:0.76rem;color:var(--muted);flex-wrap:wrap;gap:8px">
+      <span>About us · FAQ · Contact us →</span>
+      <span>© 2025 Jyoti Hospital. All Rights Reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show') });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.sr').forEach(el => io.observe(el));
+  </script>
 </body>
+
 </html>

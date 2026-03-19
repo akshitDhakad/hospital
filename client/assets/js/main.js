@@ -186,6 +186,25 @@
     });
   }
 
+  function setupMobileNav() {
+    const overlay = document.getElementById("mobile-nav");
+    const closeBtn = document.getElementById("mobile-nav-close");
+    const menuBtn = document.querySelector(".nav-menu-btn");
+
+    if (!overlay || !menuBtn) {
+      return;
+    }
+
+    menuBtn.addEventListener("click", () => overlay.classList.add("open"));
+    closeBtn?.addEventListener("click", () => overlay.classList.remove("open"));
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        overlay.classList.remove("open");
+      }
+    });
+  }
+
   setupSearch();
   setupAppointmentForm();
+  setupMobileNav();
 })();
